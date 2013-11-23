@@ -12,24 +12,39 @@
 
 % ludecomp1: without pivoting
 % ludecomp2: optimizing deleting "for" 
-% -> ludecomp3: with pivoting using the permutation matrix
+% -> ludecomp3: with partial pivoting using the permutation matrix
 
-function A = ludecomp3(A)
+function [A,PERM] = ludecomp3(A)
 
 N = size(A); % square matrix
-p = 1:N;
+PERM = 1:N;
 
 for c = 1:N-1
+    % permuted matrix
+    A(PERM,:)
     
     %permutation vector update
-    [~, i] = max(A(c,:));
-    p(c) = i;
+    [~, i] = max(abs(A(PERM(c:N),c)));
+    % pivot retrieval from the i-nth row of permutation vector
+    pivot = A(PERM(i+c-1),c);
+    % because the i-nth is a submatrix, 
+    % we sum the i to the gap of already elaborated rows: c-1
     
-    %r-nth multiplier
-    R = i+1:N;    
+    % inverting interested rows
+    t = PERM(c);
+    PERM(c) = i+c-1;
+    PERM(i+c-1) = t;
     
-    A(R,i) = A(R,i) / A(i,i);
-    % transform the r-nth row
-    m = A(R,i);
-    A(R,R) = A(R,R) - m*A(i,R);
+    % vector of Permuted Rows
+    R = PERM(c+1:N);
+    
+    % multiplier
+    A(R,c) = A(R,c) / pivot;
+    
+    % vector of Kolumns :D (without permutation because the permutation is
+    % partial
+    K = c+1:N;
+    
+    % transform the A(R,K) submatrix
+    A(R,K) = A(R,K) - A(R,c)*A(PERM(c),K);
 end

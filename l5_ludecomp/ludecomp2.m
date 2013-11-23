@@ -18,10 +18,12 @@ function A = ludecomp2(A)
 N = size(A); % square matrix
 
 for c = 1:N-1
-    %r-nth multiplier
+    %submatrix indexes
     R = c+1:N;
+    
+    % multipliers
     A(R,c) = A(R,c) / A(c,c);
-    % transform the r-nth row
-    m = A(R,c);
-    A(R,R) = A(R,R) - m*A(c,R);
+    
+    % U calculation
+    A(R,R) = A(R,R) - A(R,c)*A(c,R);
 end

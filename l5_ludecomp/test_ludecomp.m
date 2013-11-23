@@ -1,10 +1,42 @@
-% define A
-A = [2 3 1 0; 4 1 2 1; -2 3 0 1; 2 0 1 0];
-% calc A = LU
-RA = ludecomp(A);
+A=rand(100);
 
-% test
-U = triu(A);
-L = tril(A,-1)+eye(size(A,1));
-LU = L*U
-res = A - LU
+% LU decomposition with for
+tic; ludecomp1(A);toc
+% Elapsed time is 0.331252 seconds.
+
+% LU decomposition with matrix indexes
+tic; ludecomp2(A);toc
+% Elapsed time is 0.004061 seconds.
+
+% LU decomposition with permutation matrix
+tic; ludecomp3(A);toc
+% Elapsed time is 0.006274 seconds.
+
+
+A=rand(200);
+
+% LU decomposition with for
+tic; ludecomp1(A);toc
+% Elapsed time is 2.863309 seconds.
+
+% LU decomposition with matrix indexes
+tic; ludecomp2(A);toc
+% Elapsed time is 0.033767 seconds.
+
+% LU decomposition with permutation matrix
+tic; ludecomp3(A);toc
+% Elapsed time is 0.012912 seconds.
+
+A=rand(300);
+
+% LU decomposition with for
+tic; ludecomp1(A);toc
+% Elapsed time is 8.613718 seconds.
+
+% LU decomposition with matrix indexes
+tic; ludecomp2(A);toc
+% Elapsed time is 0.062917 seconds.
+
+% LU decomposition with permutation matrix
+tic; ludecomp3(A);toc
+% Elapsed time is 0.038382 seconds.
