@@ -1,13 +1,18 @@
-% Input : A matrice da decomporre
-% Output: decomposizione A = LU in forma
-% - la U è salvata nella parte traingolare superiore
-% - mentre tril(A) contiene le informazioni
-% - overo L=eye(N)+tril(A,-1)
+% LU (Lower Upper) decomposition, without permutation and pivoting.
+% The algorithm writes the result on the same memory area of input matrix.
+
+% http://en.wikipedia.org/wiki/LU_decomposition
+
+% Input : A, matrix to decompose
+% Output: A, decomposed A as result of equation A = LU
+% - U is the upper triangular matrix - triu(A)
+% - L is the lower triangular part, including the diagonal.
+% - so L=eye(N)+tril(A,-1) because the diagonal must be full of 1
 
 
-% 1) senza pivoting
-% 2) togliamo i "for" il più possibile
-% -> 3) pivoting
+% ludecomp1: without pivoting
+% ludecomp2: optimizing deleting "for" 
+% -> ludecomp3: with pivoting using the permutation matrix
 
 function A = ludecomp3(A)
 
