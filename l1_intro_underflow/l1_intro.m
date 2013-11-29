@@ -1,27 +1,13 @@
 % Lesson 01 - Matlab Intro, Copyright 2013, Roberto 'psicomante' Pesando
-%  
-% This program is free software; you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation; either version 2 of the License, or (at
-% your option) any later version.
-% 
-% This program is distributed in the hope that it will be useful, but
-% WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-% or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
-% for more details.
-% 
-% You should have received a copy of the GNU General Public License
-% along with this program as the file LICENSE.txt; if not, please see
-% http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt.
 
 %creates a vector from value 0 to pi, with a pi/200 step
 x = linspace(0, pi, 200);
 
-% crea un vettore di 200 elementi
+% vector of 200 elements
 sinx = sin(x);
 
 % plotta il grafico
-plot(x, sinx);
+figure;plot(x, sinx, 'b');
 
 % crea un valore double
 num = 1/3
@@ -51,6 +37,8 @@ plot(x, cos(x), 'r');
 % traccia il grafico di exp(x) in nero tratteggiato
 plot(x, exp(x), 'k--');
 
+legend('cos(x)', 'sin(x)', 'exp(-x)');
+
 % reflush grafico attivo
 hold off
 
@@ -75,6 +63,27 @@ v.^v
 v.*v
 2./v
 v./v
+
+S = realmax
+
+x = 1e308
+x = 1.0000e+38
+200*x
+%ans = Inf
+% overflow as soon the variables gets over realmax
+
+s = realmin
+
+% sotto realmin, modifica interna della rappresentazione per poter
+% scendere un po' di più verso lo zero (con minori cifre significative)
+s / 200
+
+s / 20000
+
+s / 1e16 %underflow
+
+
+I = realmin
 
 
 
