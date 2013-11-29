@@ -18,6 +18,7 @@ function [A,PERM] = ludecomp3(A)
 
 N = size(A); % square matrix
 PERM = 1:N;
+% [3 1 2 4]
 
 for c = 1:N-1
     % permuted matrix
@@ -31,9 +32,13 @@ for c = 1:N-1
     % we sum the i to the gap of already elaborated rows: c-1
     
     % inverting interested rows
-    t = PERM(c);
-    PERM(c) = i+c-1;
-    PERM(i+c-1) = t;
+    
+    PERM([p, p-1+i]) = PERM([p-1+i,p]);
+    
+    % BAD WAY
+    %t = PERM(c);
+    %PERM(c) = i+c-1;
+    %PERM(i+c-1) = t;
     
     % vector of Permuted Rows
     R = PERM(c+1:N);
