@@ -29,3 +29,13 @@ F = sqrt(xx.^2+1) - xx
 % 1/(sqrt(x.^2+1)+x)
 E = 1./(sqrt(xx.^2+1) + xx)
 
+
+function [x,y,z] = underflow
+
+%x=logspace(0,10,20);
+%y=sqrt(x.^2+1)-x;
+%z=1.0 ./ (sqrt(x.^2+1)+x);
+%hold on
+%loglog(x,y,'r');
+%loglog(x,z,'g');
+%hold off
