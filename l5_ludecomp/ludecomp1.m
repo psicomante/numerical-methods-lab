@@ -4,20 +4,21 @@
 % http://en.wikipedia.org/wiki/LU_decomposition
 
 % Input : A, matrix to decompose
-% Output: A, decomposed A as result of equation A = LU
-% - U is the upper triangular matrix - triu(A)
+% Output: A, decomposed A as result of equation A = LU, compact form
+% - U is the upper triangular matrix [command: triu(A)]
 % - L is the lower triangular part, including the diagonal.
-% - so L=eye(N)+tril(A,-1) because the diagonal must be full of 1
-
+% - so L=eye(N)+tril(A) because the diagonal must be full of 1
+% testing:
+% U = triu(A); L = eye(N)+tril(A,-1);
+% must be A = L*U
 
 % -> ludecomp1: without pivoting
 % ludecomp2: optimizing deleting "for" 
 % ludecomp3: with pivoting using the permutation matrix
 
-
 function A = ludecomp1(A)
 
-N = size(A); % square matrix
+N = length(A); % square matrix
 
 for c = 1:N-1
     %r-nth multiplier
