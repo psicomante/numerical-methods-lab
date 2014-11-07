@@ -24,16 +24,17 @@ for c = 1:N-1
     % permuted matrix
     A(PERM,:)
     
-    %permutation vector update
+    % permutation vector update
     [~, i] = max(abs(A(PERM(c:N),c)));
-    % pivot retrieval from the i-nth row of permutation vector
+    
+    % real pivot retrieval from the i-nth row of permutation vector (because ma
+    % calculate the magnitude, we can have the wrong sign
     pivot = A(PERM(i+c-1),c);
     % because the i-nth is a submatrix, 
     % we sum the i to the gap of already elaborated rows: c-1
     
     % inverting interested rows
-    
-    PERM([p, p-1+i]) = PERM([p-1+i,p]);
+    PERM([c, c-1+i]) = PERM([c-1+i,c]);
     
     % BAD WAY
     %t = PERM(c);
