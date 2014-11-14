@@ -22,7 +22,7 @@ PERM = 1:N;
 
 for c = 1:N-1
     % permuted matrix
-    A(PERM,:)
+    A(PERM,:);
     
     % permutation vector update
     [~, i] = max(abs(A(PERM(c:N),c)));
