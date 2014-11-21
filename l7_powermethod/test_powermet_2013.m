@@ -6,4 +6,4 @@ At = A';
 eig(A)
 
 % we found an iterative approximation of max(eig(A))
-powermet(A,10)
+powermet_2013(A,10)

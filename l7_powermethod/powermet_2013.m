@@ -1,4 +1,4 @@
-function [l, v] = powermet(A, niter)
+function [l, v] = powermet(A, toll)
 
 n = length(A);
 
